@@ -1,0 +1,1 @@
+Command: cmake -G Ninja -DPYTHON_DEPS_CHECKED=1 -DPYTHON=C:\Users\skkab\.espressif\python_env\idf5.5_py3.11_env\Scripts\python.exe -DESP_PLATFORM=1 -DIDF_TARGET=esp32s3 -DCCACHE_ENABLE=0 F:\watch_lib\ESP32-S3-Touch-AMOLED-2.06-main\examples\ESP-IDF-v5.4.2\04_Immersive_block

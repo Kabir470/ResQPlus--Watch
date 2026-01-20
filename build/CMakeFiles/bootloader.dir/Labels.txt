@@ -1,0 +1,13 @@
+# Target labels
+ bootloader
+# Source files and their labels
+F:/watch_lib/ESP32-S3-Touch-AMOLED-2.06-main/examples/ESP-IDF-v5.4.2/04_Immersive_block/build/CMakeFiles/bootloader
+F:/watch_lib/ESP32-S3-Touch-AMOLED-2.06-main/examples/ESP-IDF-v5.4.2/04_Immersive_block/build/CMakeFiles/bootloader.rule
+F:/watch_lib/ESP32-S3-Touch-AMOLED-2.06-main/examples/ESP-IDF-v5.4.2/04_Immersive_block/build/CMakeFiles/bootloader-complete.rule
+F:/watch_lib/ESP32-S3-Touch-AMOLED-2.06-main/examples/ESP-IDF-v5.4.2/04_Immersive_block/build/bootloader-prefix/src/bootloader-stamp/bootloader-build.rule
+F:/watch_lib/ESP32-S3-Touch-AMOLED-2.06-main/examples/ESP-IDF-v5.4.2/04_Immersive_block/build/bootloader-prefix/src/bootloader-stamp/bootloader-configure.rule
+F:/watch_lib/ESP32-S3-Touch-AMOLED-2.06-main/examples/ESP-IDF-v5.4.2/04_Immersive_block/build/bootloader-prefix/src/bootloader-stamp/bootloader-download.rule
+F:/watch_lib/ESP32-S3-Touch-AMOLED-2.06-main/examples/ESP-IDF-v5.4.2/04_Immersive_block/build/bootloader-prefix/src/bootloader-stamp/bootloader-install.rule
+F:/watch_lib/ESP32-S3-Touch-AMOLED-2.06-main/examples/ESP-IDF-v5.4.2/04_Immersive_block/build/bootloader-prefix/src/bootloader-stamp/bootloader-mkdir.rule
+F:/watch_lib/ESP32-S3-Touch-AMOLED-2.06-main/examples/ESP-IDF-v5.4.2/04_Immersive_block/build/bootloader-prefix/src/bootloader-stamp/bootloader-patch.rule
+F:/watch_lib/ESP32-S3-Touch-AMOLED-2.06-main/examples/ESP-IDF-v5.4.2/04_Immersive_block/build/bootloader-prefix/src/bootloader-stamp/bootloader-update.rule

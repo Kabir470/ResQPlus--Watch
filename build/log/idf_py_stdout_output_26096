@@ -1,0 +1,88 @@
+Command: cmake -G Ninja -DPYTHON_DEPS_CHECKED=1 -DPYTHON=C:\Users\skkab\.espressif\python_env\idf5.5_py3.11_env\Scripts\python.exe -DESP_PLATFORM=1 -DIDF_TARGET=esp32s3 -DCCACHE_ENABLE=0 F:\watch_lib\ESP32-S3-Touch-AMOLED-2.06-main\examples\ESP-IDF-v5.4.2\04_Immersive_block
+-- Existing sdkconfig 'F:/watch_lib/ESP32-S3-Touch-AMOLED-2.06-main/examples/ESP-IDF-v5.4.2/04_Immersive_block/sdkconfig' renamed to 'F:/watch_lib/ESP32-S3-Touch-AMOLED-2.06-main/examples/ESP-IDF-v5.4.2/04_Immersive_block/sdkconfig.old'.
+-- Found Git: C:/Program Files/Git/cmd/git.exe (found version "2.45.1.windows.1")
+-- Minimal build - ON
+-- The C compiler identification is GNU 14.2.0
+-- The CXX compiler identification is GNU 14.2.0
+-- The ASM compiler identification is GNU
+-- Found assembler: C:/Users/skkab/.espressif/tools/xtensa-esp-elf/esp-14.2.0_20251107/xtensa-esp-elf/bin/xtensa-esp32s3-elf-gcc.exe
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: C:/Users/skkab/.espressif/tools/xtensa-esp-elf/esp-14.2.0_20251107/xtensa-esp-elf/bin/xtensa-esp32s3-elf-gcc.exe - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: C:/Users/skkab/.espressif/tools/xtensa-esp-elf/esp-14.2.0_20251107/xtensa-esp-elf/bin/xtensa-esp32s3-elf-g++.exe - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- git rev-parse returned 'fatal: not a git repository (or any of the parent directories): .git'
+-- Could not use 'git describe' to determine PROJECT_VER.
+-- Building ESP-IDF components for target esp32s3
+NOTICE: 
+Following dependencies have new versions available:
+Dependency "espressif/esp_codec_dev": "1.3.5" -> "1.3.6"
+Dependency "espressif/esp_io_expander": "1.0.1" -> "1.2.0"
+Dependency "espressif/esp_lcd_touch": "1.1.2" -> "1.2.1"
+Dependency "espressif/esp_lcd_touch_ft5x06": "1.0.7" -> "1.1.0"
+Dependency "espressif/esp_lvgl_port": "2.6.0" -> "2.7.0"
+Dependency "lvgl/lvgl": "9.3.0" -> "9.4.0"
+Dependency "waveshare/esp32_s3_touch_amoled_2_06": "1.0.2" -> "1.0.6"
+Dependency "waveshare/qmi8658": "1.0.0" -> "1.0.1"
+Consider running "idf.py update-dependencies" to update your lock file.
+NOTICE: Updating lock file at F:\watch_lib\ESP32-S3-Touch-AMOLED-2.06-main\examples\ESP-IDF-v5.4.2\04_Immersive_block\dependencies.lock
+NOTICE: Processing 12 dependencies:
+NOTICE: [1/12] espressif/cmake_utilities (0.5.3)
+NOTICE: [2/12] espressif/esp_codec_dev (1.3.5)
+NOTICE: [3/12] espressif/esp_io_expander (1.0.1)
+NOTICE: [4/12] espressif/esp_lcd_panel_io_additions (1.0.1)
+NOTICE: [5/12] espressif/esp_lcd_touch (1.1.2)
+NOTICE: [6/12] espressif/esp_lcd_touch_ft5x06 (1.0.7)
+NOTICE: [7/12] espressif/esp_lvgl_port (2.6.0)
+NOTICE: [8/12] lvgl/lvgl (9.3.0)
+NOTICE: [9/12] waveshare/esp32_s3_touch_amoled_2_06 (1.0.2)
+NOTICE: [10/12] waveshare/esp_lcd_sh8601 (1.0.2)
+NOTICE: [11/12] waveshare/qmi8658 (1.0.0)
+NOTICE: [12/12] idf (5.5.2)
+-- ESP-TEE is currently supported only on the esp32c6;esp32h2;esp32c5 SoCs
+-- Project sdkconfig file F:/watch_lib/ESP32-S3-Touch-AMOLED-2.06-main/examples/ESP-IDF-v5.4.2/04_Immersive_block/sdkconfig
+Loading defaults file F:/watch_lib/ESP32-S3-Touch-AMOLED-2.06-main/examples/ESP-IDF-v5.4.2/04_Immersive_block/sdkconfig.defaults...
+warning: unknown kconfig symbol 'ESP_BROOKESIA_MEMORY_USE_CUSTOM' assigned to 'y' in F:/watch_lib/ESP32-S3-Touch-AMOLED-2.06-main/examples/ESP-IDF-v5.4.2/04_Immersive_block/sdkconfig.defaults
+warning: unknown kconfig symbol 'BSP_DISPLAY_LVGL_TASK_STACK_SIZE_KB' assigned to '6' in F:/watch_lib/ESP32-S3-Touch-AMOLED-2.06-main/examples/ESP-IDF-v5.4.2/04_Immersive_block/sdkconfig.defaults
+warning: unknown kconfig symbol 'LV_COLOR_SCREEN_TRANSP' assigned to 'y' in F:/watch_lib/ESP32-S3-Touch-AMOLED-2.06-main/examples/ESP-IDF-v5.4.2/04_Immersive_block/sdkconfig.defaults
+warning: unknown kconfig symbol 'LV_MEM_CUSTOM' assigned to 'y' in F:/watch_lib/ESP32-S3-Touch-AMOLED-2.06-main/examples/ESP-IDF-v5.4.2/04_Immersive_block/sdkconfig.defaults
+warning: unknown kconfig symbol 'LV_MEMCPY_MEMSET_STD' assigned to 'y' in F:/watch_lib/ESP32-S3-Touch-AMOLED-2.06-main/examples/ESP-IDF-v5.4.2/04_Immersive_block/sdkconfig.defaults
+-- Compiler supported targets: xtensa-esp-elf
+-- Found Python3: C:/Users/skkab/.espressif/python_env/idf5.5_py3.11_env/Scripts/python.exe (found version "3.11.2") found components: Interpreter
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
+-- Found Threads: TRUE
+-- Performing Test C_COMPILER_SUPPORTS_WFORMAT_SIGNEDNESS
+-- Performing Test C_COMPILER_SUPPORTS_WFORMAT_SIGNEDNESS - Success
+-- USING O3
+-- App "hello_world" version: 1
+-- Adding linker script F:/watch_lib/ESP32-S3-Touch-AMOLED-2.06-main/examples/ESP-IDF-v5.4.2/04_Immersive_block/build/esp-idf/esp_system/ld/memory.ld
+-- Adding linker script F:/watch_lib/ESP32-S3-Touch-AMOLED-2.06-main/examples/ESP-IDF-v5.4.2/04_Immersive_block/build/esp-idf/esp_system/ld/sections.ld.in
+-- Adding linker script C:/Users/skkab/esp/v5.5.2/esp-idf/components/esp_rom/esp32s3/ld/esp32s3.rom.ld
+-- Adding linker script C:/Users/skkab/esp/v5.5.2/esp-idf/components/esp_rom/esp32s3/ld/esp32s3.rom.api.ld
+-- Adding linker script C:/Users/skkab/esp/v5.5.2/esp-idf/components/esp_rom/esp32s3/ld/esp32s3.rom.bt_funcs.ld
+-- Adding linker script C:/Users/skkab/esp/v5.5.2/esp-idf/components/esp_rom/esp32s3/ld/esp32s3.rom.libgcc.ld
+-- Adding linker script C:/Users/skkab/esp/v5.5.2/esp-idf/components/esp_rom/esp32s3/ld/esp32s3.rom.wdt.ld
+-- Adding linker script C:/Users/skkab/esp/v5.5.2/esp-idf/components/esp_rom/esp32s3/ld/esp32s3.rom.version.ld
+-- Adding linker script C:/Users/skkab/esp/v5.5.2/esp-idf/components/esp_rom/esp32s3/ld/esp32s3.rom.ble_master.ld
+-- Adding linker script C:/Users/skkab/esp/v5.5.2/esp-idf/components/esp_rom/esp32s3/ld/esp32s3.rom.ble_50.ld
+-- Adding linker script C:/Users/skkab/esp/v5.5.2/esp-idf/components/esp_rom/esp32s3/ld/esp32s3.rom.ble_smp.ld
+-- Adding linker script C:/Users/skkab/esp/v5.5.2/esp-idf/components/esp_rom/esp32s3/ld/esp32s3.rom.ble_dtm.ld
+-- Adding linker script C:/Users/skkab/esp/v5.5.2/esp-idf/components/esp_rom/esp32s3/ld/esp32s3.rom.ble_test.ld
+-- Adding linker script C:/Users/skkab/esp/v5.5.2/esp-idf/components/esp_rom/esp32s3/ld/esp32s3.rom.ble_scan.ld
+-- Adding linker script C:/Users/skkab/esp/v5.5.2/esp-idf/components/esp_rom/esp32s3/ld/esp32s3.rom.libc.ld
+-- Adding linker script C:/Users/skkab/esp/v5.5.2/esp-idf/components/esp_rom/esp32s3/ld/esp32s3.rom.newlib.ld
+-- Adding linker script C:/Users/skkab/esp/v5.5.2/esp-idf/components/soc/esp32s3/ld/esp32s3.peripherals.ld
+-- LVGL version: 9.3.0
+-- ESP_LCD_PANEL_IO_ADDITIONS: 1.0.1
+-- ESP_LCD_SH8601: 1.0.2
+-- Components: app_update bootloader bootloader_support cxx driver efuse esp_app_format esp_bootloader_format esp_common esp_driver_ana_cmpr esp_driver_bitscrambler esp_driver_dac esp_driver_gpio esp_driver_gptimer esp_driver_i2c esp_driver_i2s esp_driver_ledc esp_driver_mcpwm esp_driver_parlio esp_driver_pcnt esp_driver_rmt esp_driver_sdio esp_driver_sdm esp_driver_sdmmc esp_driver_sdspi esp_driver_spi esp_driver_tsens esp_driver_twai esp_driver_uart esp_driver_usb_serial_jtag esp_hw_support esp_lcd esp_mm esp_partition esp_pm esp_psram esp_ringbuf esp_rom esp_security esp_system esp_timer esp_vfs_console espressif__cmake_utilities espressif__esp_codec_dev espressif__esp_io_expander espressif__esp_lcd_panel_io_additions espressif__esp_lcd_touch espressif__esp_lcd_touch_ft5x06 espressif__esp_lvgl_port esptool_py fatfs freertos hal heap log lvgl__lvgl main mbedtls newlib nvs_flash partition_table pthread sdmmc soc spi_flash spiffs usb vfs waveshare__esp32_s3_touch_amoled_2_06 waveshare__esp_lcd_sh8601 waveshare__qmi8658 wear_levelling xtensa
+-- Component paths: C:/Users/skkab/esp/v5.5.2/esp-idf/components/app_update C:/Users/skkab/esp/v5.5.2/esp-idf/components/bootloader C:/Users/skkab/esp/v5.5.2/esp-idf/components/bootloader_support C:/Users/skkab/esp/v5.5.2/esp-idf/components/cxx C:/Users/skkab/esp/v5.5.2/esp-idf/components/driver C:/Users/skkab/esp/v5.5.2/esp-idf/components/efuse C:/Users/skkab/esp/v5.5.2/esp-idf/components/esp_app_format C:/Users/skkab/esp/v5.5.2/esp-idf/components/esp_bootloader_format C:/Users/skkab/esp/v5.5.2/esp-idf/components/esp_common C:/Users/skkab/esp/v5.5.2/esp-idf/components/esp_driver_ana_cmpr C:/Users/skkab/esp/v5.5.2/esp-idf/components/esp_driver_bitscrambler C:/Users/skkab/esp/v5.5.2/esp-idf/components/esp_driver_dac C:/Users/skkab/esp/v5.5.2/esp-idf/components/esp_driver_gpio C:/Users/skkab/esp/v5.5.2/esp-idf/components/esp_driver_gptimer C:/Users/skkab/esp/v5.5.2/esp-idf/components/esp_driver_i2c C:/Users/skkab/esp/v5.5.2/esp-idf/components/esp_driver_i2s C:/Users/skkab/esp/v5.5.2/esp-idf/components/esp_driver_ledc C:/Users/skkab/esp/v5.5.2/esp-idf/components/esp_driver_mcpwm C:/Users/skkab/esp/v5.5.2/esp-idf/components/esp_driver_parlio C:/Users/skkab/esp/v5.5.2/esp-idf/components/esp_driver_pcnt C:/Users/skkab/esp/v5.5.2/esp-idf/components/esp_driver_rmt C:/Users/skkab/esp/v5.5.2/esp-idf/components/esp_driver_sdio C:/Users/skkab/esp/v5.5.2/esp-idf/components/esp_driver_sdm C:/Users/skkab/esp/v5.5.2/esp-idf/components/esp_driver_sdmmc C:/Users/skkab/esp/v5.5.2/esp-idf/components/esp_driver_sdspi C:/Users/skkab/esp/v5.5.2/esp-idf/components/esp_driver_spi C:/Users/skkab/esp/v5.5.2/esp-idf/components/esp_driver_tsens C:/Users/skkab/esp/v5.5.2/esp-idf/components/esp_driver_twai C:/Users/skkab/esp/v5.5.2/esp-idf/components/esp_driver_uart C:/Users/skkab/esp/v5.5.2/esp-idf/components/esp_driver_usb_serial_jtag C:/Users/skkab/esp/v5.5.2/esp-idf/components/esp_hw_support C:/Users/skkab/esp/v5.5.2/esp-idf/components/esp_lcd C:/Users/skkab/esp/v5.5.2/esp-idf/components/esp_mm C:/Users/skkab/esp/v5.5.2/esp-idf/components/esp_partition C:/Users/skkab/esp/v5.5.2/esp-idf/components/esp_pm C:/Users/skkab/esp/v5.5.2/esp-idf/components/esp_psram C:/Users/skkab/esp/v5.5.2/esp-idf/components/esp_ringbuf C:/Users/skkab/esp/v5.5.2/esp-idf/components/esp_rom C:/Users/skkab/esp/v5.5.2/esp-idf/components/esp_security C:/Users/skkab/esp/v5.5.2/esp-idf/components/esp_system C:/Users/skkab/esp/v5.5.2/esp-idf/components/esp_timer C:/Users/skkab/esp/v5.5.2/esp-idf/components/esp_vfs_console F:/watch_lib/ESP32-S3-Touch-AMOLED-2.06-main/examples/ESP-IDF-v5.4.2/04_Immersive_block/managed_components/espressif__cmake_utilities F:/watch_lib/ESP32-S3-Touch-AMOLED-2.06-main/examples/ESP-IDF-v5.4.2/04_Immersive_block/managed_components/espressif__esp_codec_dev F:/watch_lib/ESP32-S3-Touch-AMOLED-2.06-main/examples/ESP-IDF-v5.4.2/04_Immersive_block/managed_components/espressif__esp_io_expander F:/watch_lib/ESP32-S3-Touch-AMOLED-2.06-main/examples/ESP-IDF-v5.4.2/04_Immersive_block/managed_components/espressif__esp_lcd_panel_io_additions F:/watch_lib/ESP32-S3-Touch-AMOLED-2.06-main/examples/ESP-IDF-v5.4.2/04_Immersive_block/managed_components/espressif__esp_lcd_touch F:/watch_lib/ESP32-S3-Touch-AMOLED-2.06-main/examples/ESP-IDF-v5.4.2/04_Immersive_block/managed_components/espressif__esp_lcd_touch_ft5x06 F:/watch_lib/ESP32-S3-Touch-AMOLED-2.06-main/examples/ESP-IDF-v5.4.2/04_Immersive_block/managed_components/espressif__esp_lvgl_port C:/Users/skkab/esp/v5.5.2/esp-idf/components/esptool_py C:/Users/skkab/esp/v5.5.2/esp-idf/components/fatfs C:/Users/skkab/esp/v5.5.2/esp-idf/components/freertos C:/Users/skkab/esp/v5.5.2/esp-idf/components/hal C:/Users/skkab/esp/v5.5.2/esp-idf/components/heap C:/Users/skkab/esp/v5.5.2/esp-idf/components/log F:/watch_lib/ESP32-S3-Touch-AMOLED-2.06-main/examples/ESP-IDF-v5.4.2/04_Immersive_block/managed_components/lvgl__lvgl F:/watch_lib/ESP32-S3-Touch-AMOLED-2.06-main/examples/ESP-IDF-v5.4.2/04_Immersive_block/main C:/Users/skkab/esp/v5.5.2/esp-idf/components/mbedtls C:/Users/skkab/esp/v5.5.2/esp-idf/components/newlib C:/Users/skkab/esp/v5.5.2/esp-idf/components/nvs_flash C:/Users/skkab/esp/v5.5.2/esp-idf/components/partition_table C:/Users/skkab/esp/v5.5.2/esp-idf/components/pthread C:/Users/skkab/esp/v5.5.2/esp-idf/components/sdmmc C:/Users/skkab/esp/v5.5.2/esp-idf/components/soc C:/Users/skkab/esp/v5.5.2/esp-idf/components/spi_flash C:/Users/skkab/esp/v5.5.2/esp-idf/components/spiffs C:/Users/skkab/esp/v5.5.2/esp-idf/components/usb C:/Users/skkab/esp/v5.5.2/esp-idf/components/vfs F:/watch_lib/ESP32-S3-Touch-AMOLED-2.06-main/examples/ESP-IDF-v5.4.2/04_Immersive_block/managed_components/waveshare__esp32_s3_touch_amoled_2_06 F:/watch_lib/ESP32-S3-Touch-AMOLED-2.06-main/examples/ESP-IDF-v5.4.2/04_Immersive_block/managed_components/waveshare__esp_lcd_sh8601 F:/watch_lib/ESP32-S3-Touch-AMOLED-2.06-main/examples/ESP-IDF-v5.4.2/04_Immersive_block/managed_components/waveshare__qmi8658 C:/Users/skkab/esp/v5.5.2/esp-idf/components/wear_levelling C:/Users/skkab/esp/v5.5.2/esp-idf/components/xtensa
+-- Configuring done (72.5s)
+-- Generating done (1.4s)
+-- Build files have been written to: F:/watch_lib/ESP32-S3-Touch-AMOLED-2.06-main/examples/ESP-IDF-v5.4.2/04_Immersive_block/build

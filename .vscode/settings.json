@@ -1,0 +1,15 @@
+{
+  "idf.portWin": "COM8",
+  "idf.openOcdConfigs": ["board/esp32s3-builtin.cfg"],
+  "idf.customExtraVars": {
+    "OPENOCD_USB_ADAPTER_LOCATION": "3-16",
+    "IDF_TARGET": "esp32s3"
+  },
+  "clangd.path": "C:\\Users\\skkab\\.espressif\\tools\\esp-clang\\esp-19.1.2_20250312\\esp-clang\\bin\\clangd.exe",
+  "clangd.arguments": [
+    "--background-index",
+    "--query-driver=**",
+    "--compile-commands-dir=f:\\watch_lib\\ESP32-S3-Touch-AMOLED-2.06-main\\examples\\ESP-IDF-v5.4.2\\04_Immersive_block\\build"
+  ],
+  "idf.flashType": "UART"
+}

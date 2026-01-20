@@ -1,0 +1,2 @@
+source F:/watch_lib/ESP32-S3-Touch-AMOLED-2.06-main/examples/ESP-IDF-v5.4.2/04_Immersive_block/build/bootloader/gdbinit/symbols
+source F:/watch_lib/ESP32-S3-Touch-AMOLED-2.06-main/examples/ESP-IDF-v5.4.2/04_Immersive_block/build/bootloader/gdbinit/connect
