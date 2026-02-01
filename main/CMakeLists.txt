@@ -1,10 +1,9 @@
-set(LV_DEMO_DIR ../managed_components/lvgl__lvgl/demos)
-file(GLOB_RECURSE LV_DEMOS_SOURCES ${LV_DEMO_DIR}/*.c)
+file(GLOB WATCH_UI_SOURCES watch_ui/*.c)
 
 idf_component_register(
-    SRCS main.c ${LV_DEMOS_SOURCES}
-    INCLUDE_DIRS . ${LV_DEMO_DIR}
-    PRIV_REQUIRES driver nvs_flash
+    SRCS main.c battery_monitor.c wifi_manager.c ${WATCH_UI_SOURCES}
+    INCLUDE_DIRS . watch_ui
+    PRIV_REQUIRES driver nvs_flash esp_wifi esp_event esp_netif
 )
 
 idf_component_get_property(LVGL_LIB lvgl__lvgl COMPONENT_LIB)

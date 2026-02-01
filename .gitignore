@@ -1,0 +1,41 @@
+# ESP-IDF / ESP32 projects
+# Build output (out-of-tree build dir)
+build/
+build*/
+
+# Generated config backups
+sdkconfig.old
+sdkconfig.bak
+sdkconfig.*.old
+
+# CMake/Ninja generated files (in case of in-tree builds)
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+compile_commands.json
+*.ninja
+.ninja_*
+
+# ESP-IDF managed components (downloaded/generated)
+managed_components/
+
+# Local IDE/editor settings
+.vscode/
+.idea/
+*.code-workspace
+.clangd
+
+# Python caches/venvs
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+
+# Logs/artifacts
+log/
+*.log
+
+# OS junk
+.DS_Store
+Thumbs.db

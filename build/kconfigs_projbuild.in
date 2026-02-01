@@ -3,3 +3,4 @@ source "C:/Users/skkab/esp/v5.5.2/esp-idf/components/esp_app_format/Kconfig.proj
 source "C:/Users/skkab/esp/v5.5.2/esp-idf/components/esp_rom/Kconfig.projbuild"
 source "C:/Users/skkab/esp/v5.5.2/esp-idf/components/esptool_py/Kconfig.projbuild"
 source "C:/Users/skkab/esp/v5.5.2/esp-idf/components/partition_table/Kconfig.projbuild"
+source "F:/watch_lib/ESP32-S3-Touch-AMOLED-2.06-main/examples/ESP-IDF-v5.4.2/04_Immersive_block/main/Kconfig.projbuild"

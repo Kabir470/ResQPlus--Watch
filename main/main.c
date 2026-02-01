@@ -13,6 +13,10 @@
 #include "bsp/display.h"
 #include "driver/gpio.h"
 
+#include "ui.h"
+
+#include "battery_monitor.h"
+
 #include "qmi8658.h"
 i2c_master_bus_handle_t bus_handle;
 static const char *TAG = "gyro_shapes";
@@ -468,10 +472,7 @@ static lv_obj_t *resqplus_count_label;
 static int resqplus_press_count;
 static TaskHandle_t resqplus_boot_btn_task_handle;
 static TaskHandle_t resqplus_pwr_btn_task_handle;
-static TimerHandle_t resqplus_sleep_timer;
 static volatile bool resqplus_display_on = true;
-
-#define RESQPLUS_SLEEP_TIMEOUT_MS (15000)
 
 /* Forward declarations (avoid implicit function declaration warnings/errors). */
 static void resqplus_update_count_label(void);
@@ -483,7 +484,6 @@ static void IRAM_ATTR resqplus_pwr_btn_isr_handler(void *arg);
 static void resqplus_init_pwr_button(void);
 static void resqplus_display_set(bool on);
 static void resqplus_activity(void);
-static void resqplus_sleep_timer_cb(TimerHandle_t timer);
 static void resqplus_inc_btn_event_cb(lv_event_t *e);
 static void resqplus_reset_btn_event_cb(lv_event_t *e);
 static void resqplus_screen_event_cb(lv_event_t *e);
@@ -510,18 +510,8 @@ static void resqplus_display_set(bool on)
 
 static void resqplus_activity(void)
 {
-    /* Wake display on any interaction and restart sleep timer */
+    /* Wake display on any interaction */
     resqplus_display_set(true);
-    if (resqplus_sleep_timer)
-    {
-        (void)xTimerReset(resqplus_sleep_timer, 0);
-    }
-}
-
-static void resqplus_sleep_timer_cb(TimerHandle_t timer)
-{
-    (void)timer;
-    resqplus_display_set(false);
 }
 
 static void resqplus_screen_event_cb(lv_event_t *e)
@@ -667,18 +657,10 @@ static void resqplus_pwr_btn_task(void *arg)
         if (resqplus_display_on)
         {
             resqplus_display_set(false);
-            if (resqplus_sleep_timer)
-            {
-                (void)xTimerStop(resqplus_sleep_timer, 0);
-            }
         }
         else
         {
             resqplus_display_set(true);
-            if (resqplus_sleep_timer)
-            {
-                (void)xTimerReset(resqplus_sleep_timer, 0);
-            }
         }
     }
 }
@@ -765,20 +747,12 @@ void app_main(void)
     }
 
     resqplus_display_on = true;
-    resqplus_sleep_timer = xTimerCreate(
-        "resqplus_sleep",
-        pdMS_TO_TICKS(RESQPLUS_SLEEP_TIMEOUT_MS),
-        pdFALSE,
-        NULL,
-        resqplus_sleep_timer_cb);
-    if (resqplus_sleep_timer)
-    {
-        (void)xTimerStart(resqplus_sleep_timer, 0);
-    }
 
     bsp_display_lock(pdMS_TO_TICKS(200));
-    resqplus_create_test_screen();
+    ui_init();
     bsp_display_unlock();
+
+    battery_monitor_start();
 
     xTaskCreatePinnedToCore(
         resqplus_boot_btn_task,
