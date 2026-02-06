@@ -14,7 +14,6 @@ extern "C"
     void startRescueSequence(lv_event_t *e);
     void turnScreenOff(lv_event_t *e);
     void setBrightness(lv_event_t *e);
-    void connectWiFi(lv_event_t *e);
 
 #ifdef __cplusplus
 } /*extern "C"*/

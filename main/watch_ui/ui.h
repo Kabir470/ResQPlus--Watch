@@ -29,7 +29,7 @@ extern "C"
 ///////////////////// SCREENS ////////////////////
 #include "ui_Screen1.h"
 #include "ui_SettingsScreen.h"
-#include "ui_WiFiScreen.h"
+#include "ui_WiFiLoginScreen.h"
 
   ///////////////////// VARIABLES ////////////////////
   extern lv_anim_t *PulseGlow_Animation(lv_obj_t *TargetObject, int delay);
@@ -40,6 +40,8 @@ extern "C"
   // IMAGES AND IMAGE SETS
   LV_IMG_DECLARE(ui_img_200884385);                // assets/rsz_1—pngtree—vector_gear_icon_3991655.png
   LV_IMG_DECLARE(ui_img_rsz_1running_4390015_png); // assets/rsz_1running_4390015.png
+  LV_IMG_DECLARE(ui_img_wifierr_png);              // assets/wifierr.png
+  LV_IMG_DECLARE(ui_img_wifiok_png);               // assets/wifiok.png
 
   // FONTS
   LV_FONT_DECLARE(ui_font_FontButton);

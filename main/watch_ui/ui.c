@@ -57,7 +57,7 @@ void ui_init(void)
     lv_disp_set_theme(dispp, theme);
     ui_Screen1_screen_init();
     ui_SettingsScreen_screen_init();
-    ui_WiFiScreen_screen_init();
+    ui_WiFiLoginScreen_screen_init();
     ui____initial_actions0 = lv_obj_create(NULL);
     lv_disp_load_scr(ui_Screen1);
 }
@@ -66,5 +66,5 @@ void ui_destroy(void)
 {
     ui_Screen1_screen_destroy();
     ui_SettingsScreen_screen_destroy();
-    ui_WiFiScreen_screen_destroy();
+    ui_WiFiLoginScreen_screen_destroy();
 }

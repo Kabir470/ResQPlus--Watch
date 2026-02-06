@@ -10,8 +10,6 @@
 
 #include "ui.h"
 
-#include "wifi_manager.h"
-
 static const char *TAG = "watch_ui";
 
 static int s_alert_count = 0;
@@ -56,11 +54,4 @@ void setBrightness(lv_event_t *e)
 
     ESP_LOGI(TAG, "Brightness arc=%d => %d%%", value, percent);
     (void)bsp_display_brightness_set(percent);
-}
-
-void connectWiFi(lv_event_t *e)
-{
-    (void)e;
-    ESP_LOGI(TAG, "WiFi button pressed");
-    wifi_manager_connect();
 }

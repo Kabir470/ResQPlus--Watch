@@ -22,19 +22,6 @@ lv_obj_t *ui_lblSteps = NULL;
 lv_obj_t *ui_Image1 = NULL;
 lv_obj_t *ui_lblAlertCount = NULL;
 
-static void ui_event_Screen1(lv_event_t *e);
-
-static void enable_gesture_bubble_recursive(lv_obj_t *parent)
-{
-    uint32_t child_count = lv_obj_get_child_count(parent);
-    for (uint32_t i = 0; i < child_count; i++)
-    {
-        lv_obj_t *child = lv_obj_get_child(parent, i);
-        lv_obj_add_flag(child, LV_OBJ_FLAG_GESTURE_BUBBLE);
-        enable_gesture_bubble_recursive(child);
-    }
-}
-
 // event funtions
 void ui_event_Button1(lv_event_t *e)
 {
@@ -53,6 +40,17 @@ void ui_event_btnSettings(lv_event_t *e)
     if (event_code == LV_EVENT_CLICKED)
     {
         _ui_screen_change(&ui_SettingsScreen, LV_SCR_LOAD_ANIM_FADE_ON, 200, 0, &ui_SettingsScreen_screen_init);
+    }
+}
+
+static void enable_gesture_bubble_recursive(lv_obj_t *parent)
+{
+    uint32_t child_count = lv_obj_get_child_count(parent);
+    for (uint32_t i = 0; i < child_count; i++)
+    {
+        lv_obj_t *child = lv_obj_get_child(parent, i);
+        lv_obj_add_flag(child, LV_OBJ_FLAG_GESTURE_BUBBLE);
+        enable_gesture_bubble_recursive(child);
     }
 }
 
@@ -80,7 +78,7 @@ static void ui_event_Screen1(lv_event_t *e)
     if (dir == LV_DIR_LEFT)
     {
         s_last_nav_ms = now_ms;
-        _ui_screen_change(&ui_WiFiScreen, LV_SCR_LOAD_ANIM_MOVE_LEFT, 200, 0, &ui_WiFiScreen_screen_init);
+        _ui_screen_change(&ui_WiFiLoginScreen, LV_SCR_LOAD_ANIM_MOVE_LEFT, 200, 0, &ui_WiFiLoginScreen_screen_init);
     }
 }
 
@@ -92,6 +90,9 @@ void ui_Screen1_screen_init(void)
     lv_obj_remove_flag(ui_Screen1, LV_OBJ_FLAG_SCROLLABLE); /// Flags
     lv_obj_set_style_bg_color(ui_Screen1, lv_color_hex(0x000000), LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_bg_opa(ui_Screen1, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
+
+    enable_gesture_bubble_recursive(ui_Screen1);
+    lv_obj_add_event_cb(ui_Screen1, ui_event_Screen1, LV_EVENT_GESTURE, NULL);
 
     ui_Label1 = lv_label_create(ui_Screen1);
     lv_obj_set_width(ui_Label1, LV_SIZE_CONTENT);  /// 1
@@ -274,10 +275,6 @@ void ui_Screen1_screen_init(void)
     lv_obj_set_style_text_color(ui_lblAlertCount, lv_color_hex(0xFF0000), LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_text_opa(ui_lblAlertCount, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_text_font(ui_lblAlertCount, &lv_font_montserrat_28, LV_PART_MAIN | LV_STATE_DEFAULT);
-
-    // Allow gestures that start on children to bubble up to the screen.
-    enable_gesture_bubble_recursive(ui_Screen1);
-    lv_obj_add_event_cb(ui_Screen1, ui_event_Screen1, LV_EVENT_GESTURE, NULL);
 
     lv_obj_add_event_cb(ui_Button1, ui_event_Button1, LV_EVENT_ALL, NULL);
     lv_obj_add_event_cb(ui_btnSettings, ui_event_btnSettings, LV_EVENT_ALL, NULL);

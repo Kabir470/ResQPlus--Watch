@@ -1,4 +1,5 @@
 file(GLOB WATCH_UI_SOURCES watch_ui/*.c)
+list(FILTER WATCH_UI_SOURCES EXCLUDE REGEX "watch_ui/ui_WiFiScreen\\.c$")
 
 idf_component_register(
     SRCS main.c battery_monitor.c wifi_manager.c ${WATCH_UI_SOURCES}

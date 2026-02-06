@@ -6817,42 +6817,6 @@
                 "children": [
                     {
                         "children": [],
-                        "depends_on": null,
-                        "help": "SSID for the WiFi network to connect to when pressing the WiFi button.",
-                        "id": "MAIN_WIFI_SSID",
-                        "name": "MAIN_WIFI_SSID",
-                        "range": null,
-                        "title": "WiFi SSID",
-                        "type": "string"
-                    },
-                    {
-                        "children": [],
-                        "depends_on": null,
-                        "help": "Password for the WiFi network.",
-                        "id": "MAIN_WIFI_PASSWORD",
-                        "name": "MAIN_WIFI_PASSWORD",
-                        "range": null,
-                        "title": "WiFi Password",
-                        "type": "string"
-                    }
-                ],
-                "depends_on": null,
-                "id": "main-wifi",
-                "title": "WiFi",
-                "type": "menu"
-            }
-        ],
-        "depends_on": null,
-        "id": "main",
-        "title": "Main",
-        "type": "menu"
-    },
-    {
-        "children": [
-            {
-                "children": [
-                    {
-                        "children": [],
                         "depends_on": "<choice COMPILER_OPTIMIZATION>",
                         "help": null,
                         "id": "COMPILER_OPTIMIZATION_DEBUG",
