@@ -32,6 +32,7 @@ extern "C"
     extern lv_obj_t *ui_lblSteps;
     extern lv_obj_t *ui_Image1;
     extern lv_obj_t *ui_lblAlertCount;
+    extern lv_obj_t *ui_lblBtStatus;
     // CUSTOM VARIABLES
 
 #ifdef __cplusplus

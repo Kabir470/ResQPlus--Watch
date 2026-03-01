@@ -1,0 +1,3 @@
+github for example code: https://github.com/waveshareteam/ESP32-S3-Touch-AMOLED-2.06.git
+docs: https://www.waveshare.com/wiki/ESP32-S3-Touch-AMOLED-2.06#FactoryFirmWare
+FactoryFirmWare: https://github.com/waveshareteam/ESP32-S3-Touch-AMOLED-2.06/tree/main/FirmWare

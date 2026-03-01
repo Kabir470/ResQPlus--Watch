@@ -2,6 +2,7 @@
 #include <math.h>
 #include <stdlib.h>
 #include <time.h>
+#include <sys/time.h>
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 #include "freertos/timers.h"
@@ -14,6 +15,7 @@
 #include "driver/gpio.h"
 
 #include "ui.h"
+#include "ble_server.h"
 
 #include "battery_monitor.h"
 
@@ -489,6 +491,211 @@ static void resqplus_reset_btn_event_cb(lv_event_t *e);
 static void resqplus_screen_event_cb(lv_event_t *e);
 static void resqplus_create_test_screen(void);
 
+/* ================================================================
+ *  Clock Update Timer – updates time & date labels every second
+ *  Also handles screen timeout / wake.
+ * ================================================================ */
+static void clock_update_timer_cb(lv_timer_t *timer)
+{
+    (void)timer;
+
+    /* ── Screen timeout / wake logic ───────────────────────────────────── */
+    if (isScreenOff())
+    {
+        /* Screen is off – check if user touched to wake */
+        if (canWakeScreen() && lv_display_get_inactive_time(NULL) < 1000)
+        {
+            wakeScreen(40); /* restore to 40 % brightness */
+        }
+        return; /* skip UI updates while screen is off */
+    }
+    else
+    {
+        int timeout_sec = getScreenTimeoutSeconds();
+        if (timeout_sec > 0)
+        {
+            uint32_t inactive_ms = lv_display_get_inactive_time(NULL);
+            if (inactive_ms > (uint32_t)timeout_sec * 1000)
+            {
+                setScreenOff(true);
+                return;
+            }
+        }
+    }
+
+    /* ── Clock update ──────────────────────────────────────────────────── */
+
+    time_t now;
+    time(&now);
+    struct tm timeinfo;
+    localtime_r(&now, &timeinfo);
+
+    /* Only update if we have a valid time (year >= 2024) */
+    if (timeinfo.tm_year + 1900 < 2024)
+    {
+        /* Show a "--:--" placeholder so user knows time isn't synced */
+        if (ui_Label3)
+        {
+            lv_label_set_text(ui_Label3, "--:--");
+        }
+        if (ui_FontDate)
+        {
+            lv_label_set_text(ui_FontDate, "NO TIME");
+        }
+        return;
+    }
+
+    /* Update time label (HH:MM) */
+    if (ui_Label3)
+    {
+        char time_buf[8];
+        strftime(time_buf, sizeof(time_buf), "%H:%M", &timeinfo);
+        lv_label_set_text(ui_Label3, time_buf);
+    }
+
+    /* Update date label (e.g. "SAT, MAR 01") */
+    if (ui_FontDate)
+    {
+        char date_buf[24];
+        strftime(date_buf, sizeof(date_buf), "%a, %b %d", &timeinfo);
+        /* Convert to uppercase */
+        for (int i = 0; date_buf[i]; i++)
+        {
+            if (date_buf[i] >= 'a' && date_buf[i] <= 'z')
+                date_buf[i] -= 32;
+        }
+        lv_label_set_text(ui_FontDate, date_buf);
+    }
+}
+
+/* ================================================================
+ *  BLE Connection Prompt (overlay on lv_layer_top)
+ * ================================================================ */
+static lv_obj_t *ble_prompt_overlay = NULL;
+static int ble_prompt_ticks = 0;
+#define BLE_PROMPT_TIMEOUT 30 /* 30 × 500 ms = 15 s */
+
+static void ble_prompt_dismiss(void)
+{
+    if (ble_prompt_overlay)
+    {
+        lv_obj_del(ble_prompt_overlay);
+        ble_prompt_overlay = NULL;
+    }
+    ble_prompt_ticks = 0;
+}
+
+static void ble_prompt_accept_cb(lv_event_t *e)
+{
+    (void)e;
+    ble_server_accept_connection();
+    ble_prompt_dismiss();
+}
+
+static void ble_prompt_reject_cb(lv_event_t *e)
+{
+    (void)e;
+    ble_server_reject_connection();
+    ble_prompt_dismiss();
+}
+
+static void ble_prompt_timer_cb(lv_timer_t *timer)
+{
+    (void)timer;
+
+    /* Update BT connected icon on main screen */
+    if (ui_lblBtStatus)
+    {
+        if (ble_server_is_connected())
+        {
+            lv_obj_remove_flag(ui_lblBtStatus, LV_OBJ_FLAG_HIDDEN);
+        }
+        else
+        {
+            lv_obj_add_flag(ui_lblBtStatus, LV_OBJ_FLAG_HIDDEN);
+        }
+    }
+
+    /* If prompt is already showing, handle timeout */
+    if (ble_prompt_overlay)
+    {
+        ble_prompt_ticks++;
+        if (ble_prompt_ticks >= BLE_PROMPT_TIMEOUT)
+        {
+            ble_server_reject_connection();
+            ble_prompt_dismiss();
+        }
+        return;
+    }
+
+    if (!ble_server_has_pending_connection())
+    {
+        return;
+    }
+
+    uint8_t bda[6];
+    ble_server_get_pending_bda(bda);
+
+    /* Dark overlay panel on the top layer (visible on any screen) */
+    ble_prompt_overlay = lv_obj_create(lv_layer_top());
+    lv_obj_set_size(ble_prompt_overlay, 300, 260);
+    lv_obj_center(ble_prompt_overlay);
+    lv_obj_remove_flag(ble_prompt_overlay, LV_OBJ_FLAG_SCROLLABLE);
+    lv_obj_set_style_bg_color(ble_prompt_overlay, lv_color_hex(0x101024), 0);
+    lv_obj_set_style_bg_opa(ble_prompt_overlay, 245, 0);
+    lv_obj_set_style_radius(ble_prompt_overlay, 20, 0);
+    lv_obj_set_style_border_color(ble_prompt_overlay, lv_color_hex(0x0066FF), 0);
+    lv_obj_set_style_border_width(ble_prompt_overlay, 2, 0);
+    lv_obj_set_style_pad_all(ble_prompt_overlay, 15, 0);
+
+    /* Title */
+    lv_obj_t *title = lv_label_create(ble_prompt_overlay);
+    lv_label_set_text(title, LV_SYMBOL_BLUETOOTH " Pair Request");
+    lv_obj_set_style_text_color(title, lv_color_hex(0x4488FF), 0);
+    lv_obj_set_style_text_font(title, &lv_font_montserrat_22, 0);
+    lv_obj_align(title, LV_ALIGN_TOP_MID, 0, 5);
+
+    /* Device address */
+    lv_obj_t *addr = lv_label_create(ble_prompt_overlay);
+    char buf[80];
+    snprintf(buf, sizeof(buf),
+             "%02X:%02X:%02X:%02X:%02X:%02X\nwants to connect",
+             bda[0], bda[1], bda[2], bda[3], bda[4], bda[5]);
+    lv_label_set_text(addr, buf);
+    lv_obj_set_style_text_color(addr, lv_color_hex(0xCCCCCC), 0);
+    lv_obj_set_style_text_align(addr, LV_TEXT_ALIGN_CENTER, 0);
+    lv_obj_set_style_text_font(addr, &lv_font_montserrat_16, 0);
+    lv_obj_align(addr, LV_ALIGN_CENTER, 0, -15);
+
+    /* Accept button */
+    lv_obj_t *acc = lv_button_create(ble_prompt_overlay);
+    lv_obj_set_size(acc, 115, 48);
+    lv_obj_align(acc, LV_ALIGN_BOTTOM_LEFT, 5, -5);
+    lv_obj_set_style_bg_color(acc, lv_color_hex(0x00AA44), 0);
+    lv_obj_set_style_radius(acc, 24, 0);
+    lv_obj_add_event_cb(acc, ble_prompt_accept_cb, LV_EVENT_CLICKED, NULL);
+    lv_obj_t *acc_lbl = lv_label_create(acc);
+    lv_label_set_text(acc_lbl, "Accept");
+    lv_obj_set_style_text_color(acc_lbl, lv_color_hex(0xFFFFFF), 0);
+    lv_obj_set_style_text_font(acc_lbl, &lv_font_montserrat_16, 0);
+    lv_obj_center(acc_lbl);
+
+    /* Reject button */
+    lv_obj_t *rej = lv_button_create(ble_prompt_overlay);
+    lv_obj_set_size(rej, 115, 48);
+    lv_obj_align(rej, LV_ALIGN_BOTTOM_RIGHT, -5, -5);
+    lv_obj_set_style_bg_color(rej, lv_color_hex(0xCC2222), 0);
+    lv_obj_set_style_radius(rej, 24, 0);
+    lv_obj_add_event_cb(rej, ble_prompt_reject_cb, LV_EVENT_CLICKED, NULL);
+    lv_obj_t *rej_lbl = lv_label_create(rej);
+    lv_label_set_text(rej_lbl, "Reject");
+    lv_obj_set_style_text_color(rej_lbl, lv_color_hex(0xFFFFFF), 0);
+    lv_obj_set_style_text_font(rej_lbl, &lv_font_montserrat_16, 0);
+    lv_obj_center(rej_lbl);
+
+    ble_prompt_ticks = 0;
+}
+
 static void resqplus_display_set(bool on)
 {
     if (on == resqplus_display_on)
@@ -559,7 +766,8 @@ static void resqplus_boot_btn_task(void *arg)
         /* LVGL updates must happen outside ISR. */
         bsp_display_lock(pdMS_TO_TICKS(200));
         resqplus_activity();
-        resqplus_press_count++;
+        resetAlertCount();
+        resqplus_press_count = 0;
         resqplus_update_count_label();
         bsp_display_unlock();
     }
@@ -605,6 +813,18 @@ static void resqplus_inc_btn_event_cb(lv_event_t *e)
     }
 
     resqplus_activity();
+
+    // Send BLE Alert
+    if (ble_server_is_connected())
+    {
+        ble_server_send_alert("Alert: Button Pressed!");
+        LV_LOG_USER("Sent BLE Alert");
+    }
+    else
+    {
+        LV_LOG_USER("BLE not connected, cannot send alert");
+    }
+
     resqplus_press_count++;
     resqplus_update_count_label();
 }
@@ -713,7 +933,7 @@ static void resqplus_create_test_screen(void)
     lv_obj_add_event_cb(inc_btn, resqplus_inc_btn_event_cb, LV_EVENT_CLICKED, NULL);
 
     lv_obj_t *inc_btn_label = lv_label_create(inc_btn);
-    lv_label_set_text(inc_btn_label, "Press");
+    lv_label_set_text(inc_btn_label, "Send Alert");
     lv_obj_center(inc_btn_label);
 
     lv_obj_t *reset_btn = lv_button_create(scr);
@@ -753,6 +973,16 @@ void app_main(void)
     bsp_display_unlock();
 
     battery_monitor_start();
+
+    /* Initialize BLE AFTER display so LCD framebuffers get internal DMA RAM first */
+    ble_server_init();
+
+    /* Poll for pending BLE connections every 500 ms and show approval prompt */
+    bsp_display_lock(pdMS_TO_TICKS(200));
+    lv_timer_create(ble_prompt_timer_cb, 500, NULL);
+    /* Update clock labels every 1 second */
+    lv_timer_create(clock_update_timer_cb, 1000, NULL);
+    bsp_display_unlock();
 
     xTaskCreatePinnedToCore(
         resqplus_boot_btn_task,

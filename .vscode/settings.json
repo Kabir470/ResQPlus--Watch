@@ -11,5 +11,6 @@
     "--query-driver=**",
     "--compile-commands-dir=f:\\watch_lib\\ESP32-S3-Touch-AMOLED-2.06-main\\examples\\ESP-IDF-v5.4.2\\04_Immersive_block\\build"
   ],
-  "idf.flashType": "UART"
+  "idf.flashType": "UART",
+  "idf.currentSetup": "C:\\Users\\skkab\\esp\\v5.5.2\\esp-idf"
 }

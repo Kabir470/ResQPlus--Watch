@@ -21,6 +21,7 @@ lv_obj_t *ui_btnSettings = NULL;
 lv_obj_t *ui_lblSteps = NULL;
 lv_obj_t *ui_Image1 = NULL;
 lv_obj_t *ui_lblAlertCount = NULL;
+lv_obj_t *ui_lblBtStatus = NULL;
 
 // event funtions
 void ui_event_Button1(lv_event_t *e)
@@ -75,10 +76,13 @@ static void ui_event_Screen1(lv_event_t *e)
     }
 
     lv_dir_t dir = lv_indev_get_gesture_dir(indev);
-    if (dir == LV_DIR_LEFT)
+
+    if (dir == LV_DIR_TOP)
     {
+        /* Swipe up → open App Drawer */
         s_last_nav_ms = now_ms;
-        _ui_screen_change(&ui_WiFiLoginScreen, LV_SCR_LOAD_ANIM_MOVE_LEFT, 200, 0, &ui_WiFiLoginScreen_screen_init);
+        _ui_screen_change(&ui_AppDrawer, LV_SCR_LOAD_ANIM_MOVE_TOP, 300, 0,
+                          &ui_AppDrawer_screen_init);
     }
 }
 
@@ -276,6 +280,19 @@ void ui_Screen1_screen_init(void)
     lv_obj_set_style_text_opa(ui_lblAlertCount, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_text_font(ui_lblAlertCount, &lv_font_montserrat_28, LV_PART_MAIN | LV_STATE_DEFAULT);
 
+    // BLE connected indicator – top-left corner
+    ui_lblBtStatus = lv_label_create(ui_Screen1);
+    lv_obj_set_width(ui_lblBtStatus, LV_SIZE_CONTENT);
+    lv_obj_set_height(ui_lblBtStatus, LV_SIZE_CONTENT);
+    lv_obj_set_x(ui_lblBtStatus, -148);
+    lv_obj_set_y(ui_lblBtStatus, -190);
+    lv_obj_set_align(ui_lblBtStatus, LV_ALIGN_CENTER);
+    lv_label_set_text(ui_lblBtStatus, LV_SYMBOL_BLUETOOTH);
+    lv_obj_set_style_text_color(ui_lblBtStatus, lv_color_hex(0x4488FF), LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_opa(ui_lblBtStatus, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_font(ui_lblBtStatus, &lv_font_montserrat_24, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_add_flag(ui_lblBtStatus, LV_OBJ_FLAG_HIDDEN); // hidden by default
+
     lv_obj_add_event_cb(ui_Button1, ui_event_Button1, LV_EVENT_ALL, NULL);
     lv_obj_add_event_cb(ui_btnSettings, ui_event_btnSettings, LV_EVENT_ALL, NULL);
 }
@@ -302,4 +319,5 @@ void ui_Screen1_screen_destroy(void)
     ui_lblSteps = NULL;
     ui_Image1 = NULL;
     ui_lblAlertCount = NULL;
+    ui_lblBtStatus = NULL;
 }

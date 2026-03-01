@@ -38,6 +38,8 @@ F:/watch_lib/ESP32-S3-Touch-AMOLED-2.06-main/examples/ESP-IDF-v5.4.2/04_Immersiv
 F:/watch_lib/ESP32-S3-Touch-AMOLED-2.06-main/examples/ESP-IDF-v5.4.2/04_Immersive_block/build/esp-idf/esp_bootloader_format/libesp_bootloader_format.a
 F:/watch_lib/ESP32-S3-Touch-AMOLED-2.06-main/examples/ESP-IDF-v5.4.2/04_Immersive_block/build/esp-idf/esp_mm/libesp_mm.a
 F:/watch_lib/ESP32-S3-Touch-AMOLED-2.06-main/examples/ESP-IDF-v5.4.2/04_Immersive_block/build/esp-idf/esp_psram/libesp_psram.a
+F:/watch_lib/ESP32-S3-Touch-AMOLED-2.06-main/examples/ESP-IDF-v5.4.2/04_Immersive_block/build/esp-idf/esp_gdbstub/libesp_gdbstub.a
+F:/watch_lib/ESP32-S3-Touch-AMOLED-2.06-main/examples/ESP-IDF-v5.4.2/04_Immersive_block/build/esp-idf/esp_coex/libesp_coex.a
 F:/watch_lib/ESP32-S3-Touch-AMOLED-2.06-main/examples/ESP-IDF-v5.4.2/04_Immersive_block/build/esp-idf/nvs_flash/libnvs_flash.a
 F:/watch_lib/ESP32-S3-Touch-AMOLED-2.06-main/examples/ESP-IDF-v5.4.2/04_Immersive_block/build/esp-idf/mbedtls/libmbedtls.a
 F:/watch_lib/ESP32-S3-Touch-AMOLED-2.06-main/examples/ESP-IDF-v5.4.2/04_Immersive_block/build/esp-idf/esp_wifi/libesp_wifi.a
@@ -45,7 +47,6 @@ F:/watch_lib/ESP32-S3-Touch-AMOLED-2.06-main/examples/ESP-IDF-v5.4.2/04_Immersiv
 F:/watch_lib/ESP32-S3-Touch-AMOLED-2.06-main/examples/ESP-IDF-v5.4.2/04_Immersive_block/build/esp-idf/esp_phy/libesp_phy.a
 F:/watch_lib/ESP32-S3-Touch-AMOLED-2.06-main/examples/ESP-IDF-v5.4.2/04_Immersive_block/build/esp-idf/esp_netif/libesp_netif.a
 F:/watch_lib/ESP32-S3-Touch-AMOLED-2.06-main/examples/ESP-IDF-v5.4.2/04_Immersive_block/build/esp-idf/wpa_supplicant/libwpa_supplicant.a
-F:/watch_lib/ESP32-S3-Touch-AMOLED-2.06-main/examples/ESP-IDF-v5.4.2/04_Immersive_block/build/esp-idf/esp_coex/libesp_coex.a
 F:/watch_lib/ESP32-S3-Touch-AMOLED-2.06-main/examples/ESP-IDF-v5.4.2/04_Immersive_block/build/esp-idf/esp_security/libesp_security.a
 F:/watch_lib/ESP32-S3-Touch-AMOLED-2.06-main/examples/ESP-IDF-v5.4.2/04_Immersive_block/build/esp-idf/pthread/libpthread.a
 F:/watch_lib/ESP32-S3-Touch-AMOLED-2.06-main/examples/ESP-IDF-v5.4.2/04_Immersive_block/build/esp-idf/esp_driver_gpio/libesp_driver_gpio.a
@@ -112,6 +113,8 @@ F:/watch_lib/ESP32-S3-Touch-AMOLED-2.06-main/examples/ESP-IDF-v5.4.2/04_Immersiv
 F:/watch_lib/ESP32-S3-Touch-AMOLED-2.06-main/examples/ESP-IDF-v5.4.2/04_Immersive_block/build/esp-idf/wpa_supplicant/libwpa_supplicant.a
 F:/watch_lib/ESP32-S3-Touch-AMOLED-2.06-main/examples/ESP-IDF-v5.4.2/04_Immersive_block/build/esp-idf/esp_coex/libesp_coex.a
 F:/watch_lib/ESP32-S3-Touch-AMOLED-2.06-main/examples/ESP-IDF-v5.4.2/04_Immersive_block/build/esp-idf/esp_wifi/libesp_wifi.a
+F:/watch_lib/ESP32-S3-Touch-AMOLED-2.06-main/examples/ESP-IDF-v5.4.2/04_Immersive_block/build/esp-idf/esp_gdbstub/libesp_gdbstub.a
+F:/watch_lib/ESP32-S3-Touch-AMOLED-2.06-main/examples/ESP-IDF-v5.4.2/04_Immersive_block/build/esp-idf/bt/libbt.a
 F:/watch_lib/ESP32-S3-Touch-AMOLED-2.06-main/examples/ESP-IDF-v5.4.2/04_Immersive_block/build/esp-idf/esp_psram/libesp_psram.a
 F:/watch_lib/ESP32-S3-Touch-AMOLED-2.06-main/examples/ESP-IDF-v5.4.2/04_Immersive_block/build/esp-idf/esp_lcd/libesp_lcd.a
 F:/watch_lib/ESP32-S3-Touch-AMOLED-2.06-main/examples/ESP-IDF-v5.4.2/04_Immersive_block/build/esp-idf/driver/libdriver.a
@@ -141,5 +144,6 @@ F:/watch_lib/ESP32-S3-Touch-AMOLED-2.06-main/examples/ESP-IDF-v5.4.2/04_Immersiv
 F:/watch_lib/ESP32-S3-Touch-AMOLED-2.06-main/examples/ESP-IDF-v5.4.2/04_Immersive_block/build/esp-idf/waveshare__esp_lcd_sh8601/libwaveshare__esp_lcd_sh8601.a
 F:/watch_lib/ESP32-S3-Touch-AMOLED-2.06-main/examples/ESP-IDF-v5.4.2/04_Immersive_block/build/esp-idf/waveshare__qmi8658/libwaveshare__qmi8658.a
 F:/watch_lib/ESP32-S3-Touch-AMOLED-2.06-main/examples/ESP-IDF-v5.4.2/04_Immersive_block/build/esp-idf/main/libmain.a
+F:/watch_lib/ESP32-S3-Touch-AMOLED-2.06-main/examples/ESP-IDF-v5.4.2/04_Immersive_block/build/esp-idf/bt/libbt.a
 F:/watch_lib/ESP32-S3-Touch-AMOLED-2.06-main/examples/ESP-IDF-v5.4.2/04_Immersive_block/build/esp-idf/waveshare__esp32_s3_touch_amoled_2_06/libwaveshare__esp32_s3_touch_amoled_2_06.a
 F:/watch_lib/ESP32-S3-Touch-AMOLED-2.06-main/examples/ESP-IDF-v5.4.2/04_Immersive_block/build/esp-idf/waveshare__qmi8658/libwaveshare__qmi8658.a

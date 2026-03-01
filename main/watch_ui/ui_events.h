@@ -6,14 +6,28 @@
 #ifndef _UI_EVENTS_H
 #define _UI_EVENTS_H
 
+#include <stdbool.h>
+
 #ifdef __cplusplus
 extern "C"
 {
 #endif
 
+    /* Alert */
     void startRescueSequence(lv_event_t *e);
+    void resetAlertCount(void);
+
+    /* Display / screen */
     void turnScreenOff(lv_event_t *e);
-    void setBrightness(lv_event_t *e);
+
+    /* Screen-off / wake helpers (used by main.c timer) */
+    bool isScreenOff(void);
+    void setScreenOff(bool off);
+    bool canWakeScreen(void);
+    void wakeScreen(int brightness_pct);
+
+    /* Bluetooth */
+    void toggleBluetooth(lv_event_t *e);
 
 #ifdef __cplusplus
 } /*extern "C"*/

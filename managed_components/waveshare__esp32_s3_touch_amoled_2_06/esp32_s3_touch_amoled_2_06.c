@@ -515,10 +515,8 @@ static lv_display_t *bsp_display_lcd_init()
         },
         .flags = {
             .sw_rotate = true,
-            .buff_dma = false,
-#if CONFIG_BSP_DISPLAY_LVGL_PSRAM
-            .buff_spiram = false,
-#endif
+            .buff_dma = true,
+            .buff_spiram = true,
 #if CONFIG_BSP_DISPLAY_LVGL_FULL_REFRESH
             .full_refresh = 1,
 #elif CONFIG_BSP_DISPLAY_LVGL_DIRECT_MODE
@@ -556,7 +554,8 @@ static lv_display_t *bsp_display_lcd_init()
     lv_display_add_event_cb(disp, rounder_event_cb, LV_EVENT_INVALIDATE_AREA, NULL);
 #else
     lv_disp_t *disp_v8 = (lv_disp_t *)disp;
-    if (disp_v8 && disp_v8->driver) {
+    if (disp_v8 && disp_v8->driver)
+    {
         disp_v8->driver->rounder_cb = bsp_lvgl_rounder_cb;
     }
 #endif
@@ -593,6 +592,14 @@ lv_display_t *bsp_display_start(void)
             .buff_dma = false,
             .buff_spiram = true,
         }};
+
+    // WiFi stack is heavily loaded on core 0 during connect.
+    // Pinning LVGL (and therefore LCD flushing) to core 1 reduces timing/DMA contention.
+    cfg.lvgl_port_cfg.task_affinity = 1;
+
+    // WiFi-screen keyboard + scan list are heavy.  Default 7 KB is not enough.
+    cfg.lvgl_port_cfg.task_stack = 10240;
+
     return bsp_display_start_with_config(&cfg);
 }
 
