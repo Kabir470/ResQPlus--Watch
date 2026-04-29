@@ -18,9 +18,9 @@ compile_commands.json
 
 # ESP-IDF managed components (downloaded/generated)
 managed_components/
+temp_auto_push.bat
 
 # Local IDE/editor settings
-.vscode/
 .idea/
 *.code-workspace
 .clangd
@@ -40,3 +40,5 @@ log/
 # OS junk
 .DS_Store
 Thumbs.db
+.gitignore
+branch_structure.json
