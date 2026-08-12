@@ -1,5 +1,5 @@
 {
-  "idf.portWin": "COM8",
+  "idf.portWin": "COM4",
   "idf.openOcdConfigs": ["board/esp32s3-builtin.cfg"],
   "idf.customExtraVars": {
     "OPENOCD_USB_ADAPTER_LOCATION": "3-16",
